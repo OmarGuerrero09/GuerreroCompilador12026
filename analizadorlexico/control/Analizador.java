@@ -1,5 +1,7 @@
 package analizadorlexico.control;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +19,8 @@ public class Analizador {
         StringBuilder sbTexto = new StringBuilder();
         //StringBuilder sbIds = new StringBuilder();
         StringBuilder sbResultados = new StringBuilder();
-        String regex = "([A-Za-z]\\w*)|(0|[1-9][0-9]*)";
+        String regex = "([A-Za-z]\\w*)|(0|[1-9]\\d*|0)|(==|!=|<=|>=|<|>|=)|(\\+|-|\\*|/)|(\\.|,|;|\\(|\\))";
+        List<String> listaLexemas = new ArrayList<>();
         Pattern patron = Pattern.compile(regex);
 
         String[] lineas = codigoOriginal.split("\n");
@@ -26,6 +29,9 @@ public class Analizador {
             // Buscador de identificadores
             Matcher matcher = patron.matcher(linea);
             while (matcher.find()) {
+                String lexemaEncontrado = matcher.group();
+                listaLexemas.add(lexemaEncontrado);
+                
                 if (matcher.group(1) != null) { // Es un Identificador
                     contador++;
                     sbResultados.append("ID: ").append(matcher.group(1)).append("\n");
@@ -34,6 +40,12 @@ public class Analizador {
                     contadorNumeros++;
                     sbResultados.append("NUM: ").append(matcher.group(2)).append("\n");
 
+                }else if (matcher.group(3) != null) { // Op. Relacionales o Asignación
+                    System.out.println("OP_REL/ASIG: " + matcher.group(3));
+                }else if (matcher.group(4) != null) { // Op. Aritméticos
+                    System.out.println("OP_ARIT: " + matcher.group(4));
+                }else if (matcher.group(5) != null) { // Puntuación 
+                    System.out.println("PUNTUACION: " + matcher.group(5));
                 }
 
                 sbTexto.append(linea).append("\n");
