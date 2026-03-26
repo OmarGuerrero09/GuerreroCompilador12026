@@ -153,7 +153,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             txtMensajes.append("\nTotal de números: " + analizador.getContadorNumeros());
         } else {
             txtMensajes.setText("No hay código para analizar. Por favor, escribe o carga un archivo.");
-        }
+        } if (!analizador.tieneErrores()) {//agregue esto
+    itemSintactico.setEnabled(true);
+    txtMensajes.append("\nAnálisis completado sin errores. Sintáctico habilitado.");
+} else {
+    itemSintactico.setEnabled(false);
+    txtMensajes.append("\nSe encontraron errores léxicos. Corríjalos para continuar.");
+}
     }//GEN-LAST:event_itemLexicoActionPerformed
 
     /**

@@ -1,0 +1,37 @@
+<programa> ::= <Bloque> .
+
+<cicl1> ::= Id = Num | Id = Num , <cicl1>
+<Lin1> ::= const <cicl1> ; | Ø
+<cicl2> ::= Id | Id , <cicl2>
+<Lin2> ::= var <cicl2> ; | Ø
+<Lin3> ::= Proced Id ; <Bloque> ; | Ø
+<Bloque> ::= <Lin1> <Lin2> <Lin3> <proposicion>
+
+<mult> ::= == | != | < | > | <= | >=
+<condicion> ::= <Expresion> <mult> <Expresion>
+
+<cicl1> ::= <proposicion> | <proposicion> ; <cicl1>
+<Lin1> ::= Begin <cicl1> end | Ø
+<Lin2> ::= Id = <Expresion> | Ø
+<Dis1> ::= Id | Num
+<Lin3> ::= write <Dis1> | Ø
+<Lin4> ::= read Id | Ø
+<Lin5> ::= call Id | Ø
+<Lin6> ::= If <condicion> then <proposicion> | Ø
+<Lin7> ::= while <condicion> do <proposicion> | Ø
+<Dis2> ::= to | down
+<Lin8> ::= For Id = <Expresion> <Dis2> <Expresion> do <proposicion>
+<mult1> ::= <Lin1> | <Lin2> | <Lin3> | <Lin4> | <Lin5> | <Lin6> | <Lin7>
+<proposicion> ::= <mult1> | <Lin8>
+
+<Dis1> ::= + | -
+<cicl1> ::= <Termino> | <Termino> <Dis1> <Expresion>
+<Expresion> ::= <cicl1>
+
+<Dis1> ::= • | /
+<cicl1> ::= <Factor> | <Factor> <Dis1> <Termino>
+<Termino> ::= <cicl1>
+
+<mult1> ::= ( <Expresion> ) | Id | Num
+<factor> ::= <mult1>
+%
