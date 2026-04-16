@@ -67,7 +67,8 @@ public class Analizador {
                        "(==|!=|<=|>=|<|>|=)|" +//
                        "(\\+|-|\\*|/)|" +//
                        "(\\.|,|;|\\(|\\)|:)|" +//
-                        "([^\\s])";
+                        "([^\\s])" +//
+                        "(.)";
         List<String> listaLexemas = new ArrayList<>();
         Pattern patron = Pattern.compile(regex);
 
