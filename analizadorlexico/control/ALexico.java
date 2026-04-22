@@ -4,6 +4,9 @@
  */
 package analizadorlexico.control;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Alfredo
@@ -38,18 +41,29 @@ public class ALexico {
     public static final int PARENTESIS_CIERRA = 54; // )
 
     //palabras reservadas
+    private static final Map<String, Integer> palabrasReservadas = new HashMap<>();
+    static {
+        palabrasReservadas.put("const", 10);
+        palabrasReservadas.put("var", 11);
+        palabrasReservadas.put("proced", 12);
+        palabrasReservadas.put("begin", 13);
+        palabrasReservadas.put("end", 14);
+        palabrasReservadas.put("write", 15);
+        palabrasReservadas.put("read", 16);
+        palabrasReservadas.put("call", 17);
+        palabrasReservadas.put("if", 18);
+        palabrasReservadas.put("then", 19);
+        palabrasReservadas.put("while", 20);
+        palabrasReservadas.put("do", 21);
+        palabrasReservadas.put("for", 22);
+        palabrasReservadas.put("to", 23);
+        palabrasReservadas.put("down", 24);
+    }
      public static int esReservada(String palabra) {
-       int res = 1;
-       String[] reservadas= {"const","var","proced","begin","end","write","read","call","if","then","while","do","for","to","down"};
-       int[] valores ={10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
-        
+      
        palabra = palabra.toLowerCase();
-         for (int i = 0; i < reservadas.length; i++) {
-             if (palabra.equals(reservadas[i])) {
-                 return valores[i];
-             }
-         }
-     return res;
+       return palabrasReservadas.getOrDefault(palabra, IDENTIFICADOR);
+
     }
            // Método auxiliar para obtener tokens de operadores
      public static int obtenerTokenOp(String op) {
