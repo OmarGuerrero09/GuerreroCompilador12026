@@ -1,0 +1,70 @@
+Gramatica para los bnf del pdf
+<programa> -> <Bloque> .
+
+
+<cicl1> -> Id = Num
+<cicl1> -> Id = Num , <cicl1>
+<Lin1> -> const <cicl1> ;
+<Lin1> -> Ø
+<cicl2> -> Id
+<cicl2> -> Id , <cicl2>
+<Lin2> -> var <cicl2> ;
+<Lin2> -> Ø
+<Lin3> -> Proced Id ; <Bloque> ;
+<Lin3> -> Ø
+<Bloque> -> <Lin1> <Lin2> <Lin3> <proposicion>
+
+
+<mult> -> ==
+<mult> -> !=
+<mult> -> <
+<mult> -> >
+<mult> -> <=
+<mult> -> >=
+<condicion> -> <Expresion> <mult> <Expresion>
+
+
+<proposicion> -> <multLin>
+<multLin> -> <LinBeg>
+<multLin> -> <LinExp>
+<multLin> -> <LinWrite>
+<multLin> -> <LinRead>
+<multLin> -> <LinCall>
+<multLin> -> <LinIf>
+<multLin> -> <LinWhile>
+<multLin> -> <LinFor>
+
+
+<LinBeg> -> begin <ciclProp> end
+<ciclProp> -> <proposicion>
+<ciclProp> -> <proposicion> ; <ciclProp>
+<LinExp> -> id = <Expresion>
+<LinWrite> -> write <DisNum>
+<DisNum> -> id
+<DisNum> -> num
+<LinRead> -> read id
+<LinCall> -> call id
+<LinIf> -> if <condicion> then <proposicion>
+<LinWhile> -> while <condicion> do <proposicion>
+<LinFor> -> for id = <Expresion> <DisDown> <Expresion> do <proposicion>
+<DisDown> -> to
+<DisDown> -> down
+
+
+
+<DisAsg> -> +
+<DisAsg> -> -
+<Expresion> -> <Termino>
+<Expresion> -> <Termino> <DisAsg> <Expresion>
+
+
+<DisDiv> -> *
+<DisDiv> -> /
+<Termino> -> <Factor>
+<Termino> -> <Factor> <DisDiv> <Termino>
+
+
+<multExpr> -> (<Expresion>)
+<multExpr> -> Id
+<multExpr> -> Num
+<factor> -> <mult1>

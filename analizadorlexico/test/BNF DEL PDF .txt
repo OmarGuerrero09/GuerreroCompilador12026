@@ -1,0 +1,39 @@
+Mis bnf actualizado
+<programa> ::= <Bloque> .
+
+<cicl1> ::= Id = Num | Id = Num , <cicl1>
+<Lin1> ::= const <cicl1> ; | Ø
+<cicl2> ::= Id | Id , <cicl2>
+<Lin2> ::= var <cicl2> ; | Ø
+<Lin3> ::= Proced Id ; <Bloque> ; | Ø
+<Bloque> ::= <Lin1> <Lin2> <Lin3> <proposicion>
+
+<mult> ::= == | != | < | > | <= | >=
+<condicion> ::= <Expresion> <mult> <Expresion>
+
+
+<proposicion> ::= <multLin>
+<multLin> ::= <LinBeg> | <LinExp> | <LinWrite> | <LinRead> | <LinCall> | <LinIf> | <LinWhile> | <LinFor>
+<LinBeg> ::= begin <ciclProp> end
+<ciclProp> ::= <proposicion> | <proposicion> ; <ciclProp>
+<LinExp> ::= id = <Expresion>
+<LinWrite> ::= write <DisNum>
+<DisNum> ::= id | num
+<LinRead> ::= read id
+<LinCall> ::= call id
+<LinIf> ::= if <condicion> then <proposicion>
+<LinWhile> ::= while <condicion> do <proposicion>
+<LinFor> ::= for id = <Expresion> <DisDown> <Expresion> do <proposicion>
+<DisDown> ::= to | down
+
+
+<DisAsg> ::= + | -
+<Expresion> ::= <Termino> | <Termino> <DisAsg> <Expresion>
+
+
+<DisDiv> ::= * | /
+<Termino> ::= <Factor> | <Factor> <DisDiv> <Termino>
+
+
+<multExpr> ::= (<Expresion>) | Id | Num
+<factor> ::= <mult1>
