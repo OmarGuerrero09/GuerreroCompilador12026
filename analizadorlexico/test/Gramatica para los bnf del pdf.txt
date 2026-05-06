@@ -10,7 +10,7 @@ Gramatica para los bnf del pdf
 <cicl2> -> Id , <cicl2>
 <Lin2> -> var <cicl2> ;
 <Lin2> -> Ø
-<Lin3> -> Proced Id ; <Bloque> ;
+<Lin3> -> Proced Id ; <Bloque> ; <Lin3>
 <Lin3> -> Ø
 <Bloque> -> <Lin1> <Lin2> <Lin3> <proposicion>
 

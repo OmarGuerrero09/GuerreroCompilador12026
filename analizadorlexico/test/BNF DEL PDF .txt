@@ -5,7 +5,7 @@ Mis bnf actualizado
 <Lin1> ::= const <cicl1> ; | Ø
 <cicl2> ::= Id | Id , <cicl2>
 <Lin2> ::= var <cicl2> ; | Ø
-<Lin3> ::= Proced Id ; <Bloque> ; | Ø
+<Lin3> ::= Proced Id ; <Bloque> ; <Lin3> | Ø
 <Bloque> ::= <Lin1> <Lin2> <Lin3> <proposicion>
 
 <mult> ::= == | != | < | > | <= | >=
