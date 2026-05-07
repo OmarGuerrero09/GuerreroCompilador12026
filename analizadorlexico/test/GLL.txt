@@ -1,0 +1,74 @@
+<programa> -> <Bloque> .
+
+<cicl1> -> Id = Num <cicl1_prima>
+<cicl1_prima> -> , <cicl1>
+<cicl1_prima> -> Ø
+<Lin1> -> const <cicl1> ;
+<Lin1> -> Ø
+
+<cicl2> -> Id <cicl2_prima>
+<cicl2_prima> -> , <cicl2>
+<cicl2_prima> -> Ø
+<Lin2> -> var <cicl2> ;
+<Lin2> -> Ø
+
+<Lin3> -> Proced Id ; <Bloque> ; <Lin3>
+<Lin3> -> Ø
+
+<Bloque> -> <Lin1> <Lin2> <Lin3> <proposicion>
+
+<mult> -> ==
+<mult> -> !=
+<mult> -> <
+<mult> -> >
+<mult> -> <=
+<mult> -> >=
+<condicion> -> <Expresion> <mult> <Expresion>
+
+<proposicion> -> <multLin>
+<multLin> -> <LinBeg>
+<multLin> -> <LinExp>
+<multLin> -> <LinWrite>
+<multLin> -> <LinRead>
+<multLin> -> <LinCall>
+<multLin> -> <LinIf>
+<multLin> -> <LinWhile>
+<multLin> -> <LinFor>
+
+<LinBeg> -> begin <ciclProp> end
+
+<ciclProp> -> <proposicion> <ciclProp_prima>
+<ciclProp_prima> -> ; <ciclProp>
+<ciclProp_prima> -> Ø
+
+<LinExp> -> id = <Expresion>
+<LinWrite> -> write <DisNum>
+<DisNum> -> id
+<DisNum> -> num
+<LinRead> -> read id
+<LinCall> -> call id
+<LinIf> -> if <condicion> then <proposicion>
+<LinWhile> -> while <condicion> do <proposicion>
+<LinFor> -> for id = <Expresion> <DisDown> <Expresion> do <proposicion>
+
+<DisDown> -> to
+<DisDown> -> down
+
+<DisAsg> -> +
+<DisAsg> -> -
+
+<Expresion> -> <Termino> <Exp_prima>
+<Exp_prima> -> <DisAsg> <Expresion>
+<Exp_prima> -> Ø
+
+<DisDiv> -> *
+<DisDiv> -> /
+
+<Termino> -> <factor> <Termino_prima>
+<Termino_prima> -> <DisDiv> <Termino>
+<Termino_prima> -> Ø
+
+<factor> -> ( <Expresion> )
+<factor> -> Id
+<factor> -> Num
+<factor> -> <factor>
