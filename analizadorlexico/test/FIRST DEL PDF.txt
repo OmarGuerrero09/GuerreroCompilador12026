@@ -1,0 +1,92 @@
+FIRST DEL PDF
+
+First(<Programa>) = First(<Bloque>)
+                  = { const, var, proced, begin, id, write, read, call, if, while, for }
+
+First(<Bloque>) = First(<LinealC>)
+                = { const, ∅ }
+                = { const } + First(<LinealV>)
+                = { const } + { var, ∅ }
+                = { const, var } + First(<LinealP>)
+                = { const, var } + { proced, ∅ }
+                = { const, var, proced } + First(<Proposicion>)
+                = { const, var, proced, begin, id, write, read, call, if, while, for }
+
+First(<LinealC>)= First(<LinealConst>) + { ∅ }
+                = { const } + { ∅ }
+                = { const, ∅ }
+
+First(<LinealV>) = First(<LinealVar>) + { ∅ }
+                = { var } + { ∅ }
+                = { var, ∅ }
+
+First(<LinealP>) = First(<CicloProc>) + { ∅ }
+                = { proced } + { ∅ }
+                = { proced, ∅ }
+
+First(<Proposicion>)= First(<MultPropo>)
+                    = { begin, id, write, read, call, if, while, for }
+
+First(<MultPropo>) = First(<LinealBegin>) + First(<LinealId>) + First(<LinealWrite>) + First(<LinealRead>) + First(<LinealCall>) + First(<LinealIf>) + First(<LinealWhile>) + First(<LinealFor>) = { begin } + { id } + { write } + { read } + { call } + { if } + { while } + { for }
+                  = { begin, id, write, read, call, if, while, for }
+
+First(<LinealBegin>) = { begin }
+
+First(<LinealId>)= { id }
+
+First(<LinealWrite>) = { write }
+
+First(<LinealRead>)= { read }
+
+First(<LinealCall>)= { call }
+
+First(<LinealIf>) = { if }
+
+First(<LinealWhile>)= { while }
+
+First(<LinealFor>) = { for }
+
+First(<Expresion>)= { ( , id , num }
+
+First(<Condicion>) = First(<Expresion>)
+                  = { ( , id , num }
+
+First(<DisyExp>) = { to , down }
+
+First(<Termino>) = First(<Factor>)
+                = { ( , id , num }
+
+First(<Factor>) = First(<MultExp>)
+               = { ( , id , num }
+
+First(<MultExp>) = { ( , id , num }
+
+First(<CicloProp>) = First(<Proposicion>)
+                  = { begin, id, write, read, call, if, while, for }
+
+First(<DisyWri>)= { id } + { num }
+                = { id, num }
+
+First(<CicloNum>)= { id }
+
+First(<LinealConst>)= { const }
+
+First(<CicloId>) = { id }
+
+First(<LinealVar>) = { var }
+
+First(<CicloProc>) = { proced }
+
+First(<LinealProc>) = { proced }
+
+First(<MultSigno>) = { == , != , < , > , <= , >= }
+
+First(<CicloTerm>) = { + , - }
+
+First(<DisySig>) = { + , - }
+
+First(<CicloFact>) = { * , / }
+
+First(<DisySigno>) = { * , / }
+
+First(∅) = { ∅ }
