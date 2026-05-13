@@ -65,4 +65,3 @@ First(<DisDiv>)        = { * , / }
 
 First(<factor>) = { ( , id , num }
 
-First(∅) = { ∅ }
