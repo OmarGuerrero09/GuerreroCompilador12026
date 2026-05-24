@@ -1,7 +1,10 @@
 package analizadorlexico.vista;
 
+import analizadorlexico.control.ASintactico;
+import analizadorlexico.control.Lexema;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -24,7 +27,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
-        itemLexico.setEnabled(false);
+        itemLexico.setEnabled(true);
         analizador = new analizadorlexico.control.Analizador();
         gestor = new analizadorlexico.control.GestorArchivos();
         setLocationRelativeTo(null);
@@ -88,6 +91,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         itemSintactico.setText("Sintáctico");
         itemSintactico.setEnabled(false);
+        itemSintactico.addActionListener(this::itemSintacticoActionPerformed);
         menuCompilar.add(itemSintactico);
 
         barraMenu.add(menuCompilar);
@@ -161,6 +165,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     txtMensajes.append("\nSe encontraron errores léxicos. Corríjalos para continuar.");
 }
     }//GEN-LAST:event_itemLexicoActionPerformed
+
+    private void itemSintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSintacticoActionPerformed
+        ArrayList<Lexema> n = analizador.getLexemas();
+        System.out.println(n.size());
+        ASintactico s = new ASintactico(n);
+        s.programa();
+        
+        txtMensajes.append("\n\n--------------------------------\n");
+        txtMensajes.append("--- RESULTADO SINTÁCTICO ---\n");
+        txtMensajes.append("Total de tokens leídos: " + n.size() + "\n");
+        txtMensajes.append(s.getMensajesSintaxis());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemSintacticoActionPerformed
 
     /**
      * @param args the command line arguments
